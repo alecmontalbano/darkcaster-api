@@ -4,10 +4,12 @@ const express = require('express');
 const server = express();
 const port = process.env.PORT || 8080;
 
-server.use(express.static(__dirname + '/public'));
-
+//routers
+const weatherRouter = require('./routers/weather.router');
+server.use(weatherRouter);
+// dummy router
 server.get('/', (request, response) => {
-  response.sendFile('public/html/index.html', {root: __dirname});
+  response.send('works');
 });
 
 server.listen(port, () => {
