@@ -8,13 +8,14 @@ const port = process.env.PORT || 8080;
 const logger = require('./middleware/logger');
 const notFound = require('./middleware/404');
 const errorHandler = require('./middleware/500');
+const cors = require('cors');
 //routers
 const weatherRouter = require('./routers/weather.router');
 
 //middleware use
 server.use(logger);
 server.use(weatherRouter);
-
+server.use(cors());
 // dummy router
 server.get('/', (request, response) => {
   response.send('works');
